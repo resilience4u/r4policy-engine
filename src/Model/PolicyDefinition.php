@@ -19,13 +19,11 @@ final class PolicyDefinition
             throw new \InvalidArgumentException('Policy name is required');
         }
 
-        // detecta tipo
         $type = $data['type'] ?? (
         isset($data['retry']) ? 'retry'
             : (isset($data['circuitBreaker']) ? 'circuit_breaker' : 'unknown')
         );
 
-        // remove metadados da config
         $config = $data;
         unset($config['name'], $config['type']);
 
@@ -43,7 +41,6 @@ final class PolicyDefinition
                 'name' => $this->name,
             ] + $this->config;
 
-        // adiciona type apenas se existir
         if ($this->type !== 'unknown') {
             $arr['type'] = $this->type;
         }

@@ -12,16 +12,6 @@ class TelemetryBridge
 
     public function recordExecution(string $policy, string $outcome, float $elapsedSeconds): void
     {
-        // Placeholder de integração futura (ex: R4Telemetry, Prometheus, OTEL)
-        // Exemplo:
-        // $this->exporter?->counter('r4policy_executions_total', [
-        //     'policy'  => $policy,
-        //     'outcome' => $outcome,
-        // ])->inc();
-        //
-        // $this->exporter?->histogram('r4policy_latency_seconds', [
-        //     'policy' => $policy,
-        // ])->observe($elapsedSeconds);
     }
 
     public function recordSuccess(PolicyDefinition $def): void
