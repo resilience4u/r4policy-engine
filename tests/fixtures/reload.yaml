@@ -1,0 +1,4 @@
+policies:
+  - name: test_policy
+    retry:
+      maxAttempts: 1

@@ -1,0 +1,7 @@
+defaults:
+  retry:
+    maxAttempts: 2
+policies:
+  - name: user_api
+    retry:
+      delay: 100ms

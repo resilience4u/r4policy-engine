@@ -1,0 +1,21 @@
+{
+    "defaults": {
+        "retry": {
+            "maxAttempts": 3
+        }
+    },
+    "policies": [
+        {
+            "name": "user_api",
+            "retry": {
+                "initialMs": 100
+            }
+        },
+        {
+            "name": "send_email",
+            "retry": {
+                "initialMs": 200
+            }
+        }
+    ]
+}

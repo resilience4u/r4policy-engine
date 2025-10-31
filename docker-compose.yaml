@@ -1,0 +1,8 @@
+services:
+  r4policy:
+    build: .
+    container_name: r4policy-engine
+    working_dir: /app/r4policy-engine
+    volumes:
+      - ..:/app
+      - .:/app/r4policy-engine

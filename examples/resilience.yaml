@@ -1,0 +1,23 @@
+defaults:
+  retry:
+    maxAttempts: 3
+    initialMs: 200
+    multiplier: 2.0
+  circuitBreaker:
+    failureRatePct: 50
+    openMs: 5000
+    minSamples: 4
+
+policies:
+  - name: user_api
+    retry:
+      maxAttempts: 5
+      initialMs: 100
+    circuitBreaker:
+      name: user_api
+      failureRatePct: 30
+      openMs: 3000
+  - name: send_email
+    retry:
+      maxAttempts: 2
+      initialMs: 200

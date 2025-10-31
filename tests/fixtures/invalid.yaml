@@ -1,0 +1,3 @@
+policies:
+ - retry:
+     maxAttempts: 2

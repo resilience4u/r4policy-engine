@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["policies"],
+  "properties": {
+    "defaults": { "type": "object" },
+    "policies": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["name"],
+        "properties": {
+          "name": { "type": "string", "minLength": 1 },
+          "retry": { "type": "object" },
+          "circuitBreaker": { "type": "object" },
+          "rateLimiter": { "type": "object" },
+          "timeLimiter": { "type": "object" },
+          "bulkhead": { "type": "object" }
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "additionalProperties": true
+}
