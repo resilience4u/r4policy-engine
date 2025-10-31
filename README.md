@@ -133,5 +133,5 @@ A cobertura atual atinge **~82% das linhas**, com cenários de integração e CL
 
 ## Licença
 
-Lançado sob a licença **MIT**.  
+Lançado sob a licença **Apache-2.0**.  
 © 2025 — parte do ecossistema **[Resilience4u](https://github.com/resilience4u)**.
