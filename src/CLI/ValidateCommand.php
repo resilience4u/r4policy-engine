@@ -17,7 +17,7 @@ final class ValidateCommand extends Command
 
     public function __construct(private readonly YamlPolicyLoader $loader)
     {
-        parent::__construct('validate');
+        parent::__construct(self::$defaultName);
     }
 
     protected function configure(): void
@@ -42,7 +42,7 @@ final class ValidateCommand extends Command
 
         try {
             $loader->load($file);
-            $output->writeln("<info>OK</info> - file {$file} is valid.");
+            $output->writeln("<info>OK</info> - {$file} is valid.");
             return Command::SUCCESS;
         } catch (\Throwable $e) {
             $output->writeln("<error>INVALID - {$e->getMessage()}</error>");

@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace R4Policy\CLI;
 
 use R4Policy\R4PolicyEngine;
-use R4Policy\Validator\PolicyValidator;
 use R4Policy\Loader\YamlPolicyLoader;
 use R4Policy\Loader\JsonPolicyLoader;
 use R4Policy\Evaluator\PolicyEvaluator;
@@ -21,14 +20,14 @@ final class DumpCommand extends Command
 
     public function __construct(private readonly YamlPolicyLoader $loader)
     {
-        parent::__construct('dump');
+        parent::__construct(self::$defaultName);
     }
 
     protected function configure(): void
     {
         $this
-            ->setDescription('Dump all policies defined in a YAML or JSON file')
-            ->addArgument('file', InputArgument::REQUIRED, 'Path to the policy file (YAML or JSON)');
+            ->setDescription('Dump all policies from a YAML or JSON file')
+            ->addArgument('file', InputArgument::REQUIRED, 'Path to the policy file');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
@@ -40,10 +39,9 @@ final class DumpCommand extends Command
             return Command::FAILURE;
         }
 
-        $validator = new PolicyValidator();
         $loader = str_ends_with($path, '.json')
-            ? new JsonPolicyLoader($validator)
-            : new YamlPolicyLoader($validator);
+            ? new JsonPolicyLoader($this->loader->validator)
+            : $this->loader;
 
         $engine = new R4PolicyEngine(
             $loader,
@@ -61,8 +59,7 @@ final class DumpCommand extends Command
 
             $output->writeln("<info>Loaded policies:</info>");
             foreach ($policies as $p) {
-                $type = $p->type ?? 'n/a';
-                $output->writeln("- <comment>{$p->name}</comment> [{$type}]");
+                $output->writeln("- <comment>{$p->name}</comment> [{$p->type}]");
             }
 
             return Command::SUCCESS;

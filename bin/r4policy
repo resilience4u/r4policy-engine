@@ -1,14 +1,24 @@
 #!/usr/bin/env php
 <?php
+
+declare(strict_types=1);
+
 require __DIR__ . '/../vendor/autoload.php';
 
 use Symfony\Component\Console\Application;
 use R4Policy\CLI\ValidateCommand;
 use R4Policy\CLI\DumpCommand;
 use R4Policy\CLI\DiffCommand;
+use R4Policy\Validator\PolicyValidator;
+use R4Policy\Loader\YamlPolicyLoader;
+
+$validator = new PolicyValidator();
+$loader = new YamlPolicyLoader($validator);
 
 $app = new Application('r4policy', '0.1.0');
-$app->add(new ValidateCommand());
-$app->add(new DumpCommand());
-$app->add(new DiffCommand());
+
+$app->add(new ValidateCommand($loader));
+$app->add(new DumpCommand($loader));
+$app->add(new DiffCommand($loader));
+
 $app->run();
