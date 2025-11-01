@@ -8,12 +8,14 @@
       "R4Policy\\": "src/"
     }
   },
+  "minimum-stability": "dev",
   "require": {
     "php": "^8.2",
     "psr/log": "^3.0",
     "symfony/yaml": "^7.1",
     "symfony/console": "^7.1",
-    "resilience4u/r4php": "@dev",
+    "resilience4u/r4php": "dev-main",
+    "resilience4u/r4contracts": "dev-main",
     "justinrainbow/json-schema": "^5.3"
   },
   "require-dev": {
@@ -24,7 +26,16 @@
     {
       "type": "path",
       "url": "/r4php"
+    },
+    {
+      "type": "composer",
+      "url": "https://repo.packagist.org"
     }
   ],
+  "scripts": {
+    "test": "vendor/bin/phpunit --colors=always",
+    "stan": "phpstan analyse -c phpstan.neon",
+    "fix": "php-cs-fixer fix --config=.php-cs-fixer.dist.php --ansi"
+  },
   "bin": ["bin/r4policy"]
 }

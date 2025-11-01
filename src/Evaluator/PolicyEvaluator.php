@@ -7,8 +7,8 @@ namespace R4Policy\Evaluator;
 use R4Policy\Contracts\PolicyEvaluatorInterface;
 use R4Policy\Model\PolicyDefinition;
 use R4Policy\Telemetry\TelemetryBridge;
+use Resilience4u\R4Contracts\Contracts\Executable;
 use Resiliente\R4PHP\Core\Chain;
-use Resiliente\R4PHP\Contracts\Executable;
 use Resiliente\R4PHP\Policies\RetryPolicy;
 use Resiliente\R4PHP\Policies\CircuitBreakerPolicy;
 
